@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../layout/Header";
 import { Footer } from "../../layout/Footer";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { BiSolidUserDetail } from "react-icons/bi";
+import { CustomInput } from "../../custom-input/CustomInput";
+
+import { toast } from "react-toastify";
+import { postUser } from "../../../helper/axios";
 
 export const SignUp = () => {
+  const [form, setForm] = useState({});
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const { confirmPassword, ...rest } = form;
+
+    if (confirmPassword !== form.password) {
+      return toast.error("Password do not match");
+    }
+
+    // call api and send rest obj
+
+    const dataPromise = postUser(rest);
+
+    toast.promise(dataPromise, {
+      pending: "Please wait...",
+    });
+
+    const { status, message } = await dataPromise;
+    toast[status](message);
+  };
   const inputs = [
     {
       label: "First Name",
@@ -39,27 +74,19 @@ export const SignUp = () => {
     <div>
       <Header />
       <section className="main">
-        <Form className="m-5 p-5 border shadow-lg">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
+        <Form className="m-5 p-5 border shadow-lg" onSubmit={handleOnSubmit}>
+          <h1>
+            <BiSolidUserDetail />
+            Add New Admin
+          </h1>
+          <hr />
+          {inputs.map((item, i) => (
+            <CustomInput key={i} {...item} onChange={handleOnChange} />
+          ))}
 
           <div className="d-grid">
-            {" "}
             <Button variant="primary" type="submit">
-              Submit
+              Add New Admin
             </Button>
           </div>
         </Form>

@@ -1,14 +1,10 @@
-import React from 'react'
-
-export const CustomInput = () => {
+import React from "react";
+import { Form } from "react-bootstrap";
+export const CustomInput = ({ label, ...rest }) => {
   return (
-    <div> <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
-/div>
-  )
-}
+    <Form.Group className="mb-3">
+      <Form.Label>{label}</Form.Label>
+      <Form.Control {...rest} />
+    </Form.Group>
+  );
+};
