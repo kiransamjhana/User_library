@@ -49,19 +49,20 @@ export const SignUp = () => {
       text: "string",
     },
     {
-      label: "Phone Number",
-      name: "fname",
-      required: true,
-      placeholder: "sam",
-      text: "string",
-    },
-    {
       label: "Last Name",
       name: "fname",
       required: true,
       placeholder: "sam",
       text: "string",
     },
+    {
+      label: "Phone Number",
+      name: "fname",
+      required: true,
+      placeholder: "sam",
+      text: "string",
+    },
+    ,
     {
       label: "Address",
       name: "address",
