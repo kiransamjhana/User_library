@@ -9,7 +9,7 @@ import { CustomInput } from "../../custom-input/CustomInput";
 import { toast } from "react-toastify";
 import { postUser } from "../../../helper/axios";
 
-export const SignUp = () => {
+const SignUp = () => {
   const [form, setForm] = useState({});
 
   const handleOnChange = (e) => {
@@ -40,35 +40,59 @@ export const SignUp = () => {
     const { status, message } = await dataPromise;
     toast[status](message);
   };
+
   const inputs = [
     {
       label: "First Name",
       name: "fname",
       required: true,
       placeholder: "sam",
-      text: "string",
+      type: "text",
     },
     {
       label: "Last Name",
-      name: "fname",
+      name: "lname",
       required: true,
       placeholder: "sam",
-      text: "string",
+      type: "text",
     },
     {
       label: "Phone Number",
-      name: "fname",
+      name: "phone",
       required: true,
-      placeholder: "sam",
-      text: "string",
+      placeholder: "044899444",
+      type: "number",
     },
-    ,
+
     {
       label: "Address",
       name: "address",
       required: true,
       placeholder: "king street",
-      text: "string",
+      type: "text",
+    },
+    {
+      label: "Email",
+      name: "email",
+      required: true,
+      placeholder: "manandharkiran90@gmail.com",
+      type: "email",
+    },
+    {
+      label: "Password",
+      name: "password",
+      required: true,
+      placeholder: "*******",
+      type: "password",
+      minLength: "6",
+    },
+    {
+      label: "Conform Password",
+      name: "confirmPassword",
+      required: true,
+      placeholder: "********",
+      type: "password",
+      minLength: "6",
     },
   ];
   return (
@@ -97,3 +121,5 @@ export const SignUp = () => {
     </div>
   );
 };
+
+export default SignUp;

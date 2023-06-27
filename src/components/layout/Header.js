@@ -37,7 +37,7 @@ export const Header = () => {
             <Nav.Link href="#link">
               {" "}
               <ImExit />
-              ßsignup
+              signup
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
