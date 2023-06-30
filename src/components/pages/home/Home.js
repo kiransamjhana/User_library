@@ -5,8 +5,8 @@ import { Login } from "../signup-signin/Login";
 export const Home = () => {
   return (
     <div>
-      <SignUp />
-      <Login />
+      {/* <SignUp />
+      <Login /> */}
     </div>
   );
 };
