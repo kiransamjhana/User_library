@@ -7,18 +7,18 @@ import { GiEntryDoor } from "react-icons/gi";
 import { ImExit } from "react-icons/im";
 export const Header = () => {
   return (
-    <Navbar expand="md" className="bg-dark-tertiary">
+    <Navbar expand="md" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Library Manangement</Navbar.Brand>
+        <Navbar.Brand href="/">Library Manangement</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">
+            <Nav.Link href="/">
               {" "}
               <AiFillHome className="fs=3" />
               Home
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/">
               {" "}
               <AiFillDashboard />
               Dashboar
@@ -29,12 +29,12 @@ export const Header = () => {
               <GiEntryDoor />
               signOUt
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/login">
               {" "}
               <GiEntryDoor />
               Sign in
             </Nav.Link>
-            <Nav.Link href="#link">
+            <Nav.Link href="/new-admin">
               {" "}
               <ImExit />
               signup

@@ -15,3 +15,16 @@ export const postUser = async (userData) => {
     };
   }
 };
+
+export const loginUser = async (userData) => {
+  try {
+    const { data } = await axios.post(userAPI + "/login", userData);
+
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
