@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Header } from "../../layout/Header";
@@ -8,10 +8,19 @@ import { BiSolidUserDetail } from "react-icons/bi";
 import { signInAdminAction } from "./userAction";
 import { CustomInput } from "../../custom-input/CustomInput";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [form, setForm] = useState({});
+
+  const { user } = useSelector((state) => state.userInfo);
+
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user?._id, navigate]);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 

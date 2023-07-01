@@ -1,6 +1,14 @@
 import React from "react";
-import SignUp from "../signup-signin/SignUp";
+import { Header } from "../../layout/Header";
+import { Footer } from "../../layout/Footer";
 
 export const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Header />
+
+      <section className="main"> pagge content later</section>
+      <Footer />
+    </div>
+  );
 };
