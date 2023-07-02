@@ -1,18 +1,57 @@
 import React from "react";
-import { Header } from "./Header";
+
 import { Container } from "react-bootstrap";
-import { Footer } from "./Footer";
+
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 export const UserLayout = ({ children, title }) => {
+  const { user } = useSelector((state) => state.userInfo);
+
   return (
     <div className="d-flex">
       <div className="left-menu bg-dark text-light  ">
-        <div className="text-center mt-3">Admin</div>
+        <div className="text-center mt-3 ">{user?.role?.toUpperCase()}</div>
         <hr />
-        <ul>
+        <ul className="list-unstyled mt-5">
           <li>
-            <Link to="/dashbaord">Dashboard</Link>
+            <Link className="nav-link" to="/dashboard">
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/burrow-history">
+              Burrow History
+            </Link>
+          </li>
+
+          {user?.role === "admin" && (
+            <>
+              <li>
+                <Link className="nav-link" to="/books">
+                  Books
+                </Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/students">
+                  Students
+                </Link>
+              </li>
+              <hr />
+              <li>
+                <Link className="nav-link" to="/signup">
+                  Add Admin
+                </Link>
+              </li>
+            </>
+          )}
+
+          <li>
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
           </li>
         </ul>
       </div>

@@ -7,7 +7,7 @@ import { BiSolidUserDetail } from "react-icons/bi";
 import { CustomInput } from "../../custom-input/CustomInput";
 
 import { toast } from "react-toastify";
-import { postUser } from "../../../helper/axios";
+import { postUser } from "../../helper/axios";
 
 const SignUp = () => {
   const [form, setForm] = useState({});

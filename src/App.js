@@ -4,12 +4,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 
-import { Home } from "./components/pages/home/Home";
+import { Home } from "./pages/home/Home";
 
-import SignUp from "./components/pages/signup-signin/SignUp";
-import Dashboard from "./components/pages/dasboard/Dashboard";
-import { PrivateRoute } from "./components/pages/private-route/PrivateRoute.js/PrivateRoute";
-import Login from "./components/pages/signup-signin/Login";
+import SignUp from "./pages/signup-signin/SignUp";
+import Dashboard from "./pages/dasboard/Dashboard";
+import { PrivateRoute } from "./components/private-route/PrivateRoute.js/PrivateRoute";
+import Login from "./pages/signup-signin/Login";
 
 function App() {
   return (
