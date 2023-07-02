@@ -1,34 +1,35 @@
 import Table from "react-bootstrap/Table";
+import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 
 export const BookTable = () => {
+  const { books } = useSelector((state) => state.bookInfo);
   return (
     <Table striped bordered hover>
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>thumbnail</th>
+          <th>Book Title</th>
+          <th>Author Name</th>
+          <th>year</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {books.map((item, i) => (
+          <tr key={item._id}>
+            <td>{i + 1}</td>
+            <td>
+              <img src={item.thumbnail} width="150px" alt="" />
+            </td>
+            <td>{item.title}</td>
+            <td>{item.author}</td>
+            <td>{item.year}</td>
+            <td>
+              <Button variant="warning">Edit</Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

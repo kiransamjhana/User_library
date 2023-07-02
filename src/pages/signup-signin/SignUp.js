@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Header } from "../../layout/Header";
-import { Footer } from "../../layout/Footer";
+
+import { Footer } from "../../components/layout/Footer";
+import { Header } from "../../components/layout/Header";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { BiSolidUserDetail } from "react-icons/bi";
-import { CustomInput } from "../../custom-input/CustomInput";
+import { CustomInput } from "../../components/custom-input/CustomInput";
 
 import { toast } from "react-toastify";
 import { postUser } from "../../helper/axios";

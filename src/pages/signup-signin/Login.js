@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Header } from "../../layout/Header";
-import { Footer } from "../../layout/Footer";
+
+import { Footer } from "../../components/layout/Footer";
 
 import { BiSolidUserDetail } from "react-icons/bi";
 import { signInAdminAction } from "./userAction";
-import { CustomInput } from "../../custom-input/CustomInput";
+import { CustomInput } from "../../components/custom-input/CustomInput";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../../components/layout/Header";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -4,10 +4,11 @@ import { CustomInput } from "../custom-input/CustomInput";
 import { useDispatch, useSelector } from "react-redux";
 import { UserLayout } from "../layout/UserLayout";
 import { postBookAction } from "../../pages/books/bookAction";
-import { Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export const NewBookForm = () => {
   const dispatch = useDispatch();
+  const { _id } = useParams();
   const { user } = useSelector((state) => state.userInfo);
 
   const [form, setForm] = useState({});
@@ -78,9 +79,7 @@ export const NewBookForm = () => {
             ))}
 
             <div className="d-grid">
-              <Button type="submit" variant="primary">
-                Add Book
-              </Button>
+              <Button variant="primary">Add Book</Button>
             </div>
           </Form>
         </div>

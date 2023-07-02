@@ -4,8 +4,9 @@ import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Header } from "./Header";
+
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export const UserLayout = ({ children, title }) => {
   const { user } = useSelector((state) => state.userInfo);

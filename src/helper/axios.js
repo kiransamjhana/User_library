@@ -43,3 +43,16 @@ export const postBook = async (obj) => {
     };
   }
 };
+
+export const fetchBooks = async () => {
+  try {
+    const { data } = await axios.get(bookAPI);
+
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

@@ -1,15 +1,16 @@
 import React from "react";
+
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+
 import { AiFillDashboard, AiFillHome } from "react-icons/ai";
 import { GiEntryDoor } from "react-icons/gi";
 import { ImExit } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { persistor } from "../../store";
-import { setUser } from "../pages/signup-signin/userSlice";
+import { setUser } from "../../pages/signup-signin/userSlice";
 
 export const Header = () => {
   const dispatch = useDispatch();
