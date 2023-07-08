@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Login from "./pages/signup-signin/Login";
 import { PrivateRoute } from "./components/private-route/PrivateRoute.js/PrivateRoute";
-import { Home } from "./pages/home/Home";
+
 import SignUp from "./pages/signup-signin/SignUp";
 import Dashboard from "./pages/dasboard/Dashboard";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,7 @@ import Profile from "./pages/profile/Profile";
 import Books from "./pages/books/Books";
 import { NewBookForm } from "./components/book-compo/NewBookform";
 import Students from "./pages/students/Student";
+import Home from "./pages/home/Home";
 function App() {
   //fetch Book
   const dispatch = useDispatch();
