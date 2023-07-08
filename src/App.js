@@ -19,28 +19,26 @@ import Books from "./pages/books/Books";
 import { NewBookForm } from "./components/book-compo/NewBookform";
 import Students from "./pages/students/Student";
 import Home from "./pages/home/Home";
-function App() {
-  //fetch Book
-  const dispatch = useDispatch();
+import { BookLanding } from "./pages/books/BookLanding";
+import BurrowHistory from "./pages/burrowHistory/BurrowHistory";
+import { EditBookForm } from "./components/book-compo/EditBookForm";
 
+function App() {
+  const dispatch = useDispatch();
+  //fetch book
   useEffect(() => {
     dispatch(fetchBookAction());
   }, [dispatch]);
+
   return (
     <div className="">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/book/:_id" element={<BookLanding />} />
 
         {/* // private routes */}
-        <Route
-          path="/new-admin"
-          element={
-            <PrivateRoute>
-              <SignUp />
-            </PrivateRoute>
-          }
-        />
         <Route
           path="/dashboard"
           element={
@@ -49,6 +47,16 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/burrow-history"
+          element={
+            <PrivateRoute>
+              <BurrowHistory />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/books"
           element={
@@ -57,11 +65,20 @@ function App() {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/book/new"
           element={
             <PrivateRoute>
               <NewBookForm />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/book/edit/:_id"
+          element={
+            <PrivateRoute>
+              <EditBookForm />
             </PrivateRoute>
           }
         />

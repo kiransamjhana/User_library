@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const BookTable = () => {
   const { books } = useSelector((state) => state.bookInfo);
@@ -11,6 +12,7 @@ export const BookTable = () => {
           <th>#</th>
           <th>thumbnail</th>
           <th>Book Title</th>
+          <th>Summary</th>
           <th>Author Name</th>
           <th>year</th>
         </tr>
@@ -22,12 +24,14 @@ export const BookTable = () => {
             <td>
               <img src={item.thumbnail} width="150px" alt="" />
             </td>
+
             <td>{item.title}</td>
+            <td> {item.summary}</td>
             <td>{item.author}</td>
             <td>{item.year}</td>
-            <td>
+            <Link to={`/book/edit/${item._id}`}>
               <Button variant="warning">Edit</Button>
-            </td>
+            </Link>
           </tr>
         ))}
       </tbody>

@@ -74,7 +74,7 @@ export const NewBookForm = () => {
         <div className="py-3">
           <Form onSubmit={handleOnSubmit}>
             {inputs.map((item, i) => (
-              <CustomInput onnChange={handleOnChange} key={i} {...item} />
+              <CustomInput onChange={handleOnChange} key={i} {...item} />
             ))}
 
             <div className="d-grid">

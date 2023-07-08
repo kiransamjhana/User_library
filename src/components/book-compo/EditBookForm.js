@@ -1,17 +1,28 @@
-import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Button } from "react-bootstrap";
 import { CustomInput } from "../custom-input/CustomInput";
 import { useDispatch, useSelector } from "react-redux";
 import { UserLayout } from "../layout/UserLayout";
-import { postBookAction } from "../../pages/books/bookAction";
-import { useParams } from "react-router-dom";
+import {
+  deleteBookAction,
+  updateBookAction,
+} from "../../pages/books/bookAction";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
-export const NewBookForm = () => {
+export const EditBookForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { _id } = useParams();
   const { user } = useSelector((state) => state.userInfo);
-
+  const { books } = useSelector((state) => state.bookInfo);
   const [form, setForm] = useState({});
+
+  useEffect(() => {
+    if (_id !== form._id) {
+      const selectedBook = books.find((item) => item._id === _id);
+      selectedBook?._id && setForm(selectedBook);
+    }
+  }, [_id, form._id, books]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -24,9 +35,14 @@ export const NewBookForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
 
-    dispatch(postBookAction(form));
+    dispatch(updateBookAction(form));
+  };
+  const handleOnDelete = () => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      const isDeleted = dispatch(deleteBookAction(_id));
+      isDeleted === "success" && navigate("/books");
+    }
   };
 
   const inputs = [
@@ -36,6 +52,7 @@ export const NewBookForm = () => {
       type: "text",
       placeholder: "How to become js pro",
       required: true,
+      value: form.title,
     },
     {
       label: "Author",
@@ -43,12 +60,14 @@ export const NewBookForm = () => {
       type: "text",
       placeholder: "Uncle Bob.",
       required: true,
+      value: form.author,
     },
     {
       label: "Year",
       name: "year",
       type: "number",
       required: true,
+      value: form.year,
     },
     {
       label: "Thumbnail",
@@ -56,6 +75,7 @@ export const NewBookForm = () => {
       type: "url",
       placeholder: "http://...",
       required: true,
+      value: form.thumbnail,
     },
     {
       label: "Summary",
@@ -65,23 +85,34 @@ export const NewBookForm = () => {
       placeholder: "book summary...",
       required: true,
       rows: 10,
+      value: form.summary,
     },
   ];
   return (
-    <UserLayout title="Add New Book">
+    <UserLayout title="Edit Book">
       {user?.role !== "admin" ? (
         <h1>Unauthorize access</h1>
       ) : (
         <div className="py-3">
-          <Form onSubmit={handleOnSubmit}>
+          <Link to="/books">
+            <Button variant="secondary">&lt; Back {_id}</Button>
+          </Link>
+          <Form onSubmit={handleOnSubmit} className="mt-3">
             {inputs.map((item, i) => (
-              <CustomInput onnChange={handleOnChange} key={i} {...item} />
+              <CustomInput key={i} {...item} onChange={handleOnChange} />
             ))}
 
-            <div className="d-grid">
-              <Button variant="primary">Add Book</Button>
+            <div className="d-flex">
+              <Button variant="primary" type="submit">
+                Update Book
+              </Button>
             </div>
           </Form>
+          <div className="text-end">
+            <Button variant="danger" type="submit" onClick={handleOnDelete}>
+              Delete Book
+            </Button>
+          </div>
         </div>
       )}
     </UserLayout>

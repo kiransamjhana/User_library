@@ -1,5 +1,5 @@
 import React from "react";
-import { UserLayout } from "../../layout/UserLayout";
+import { UserLayout } from "../../components/layout/UserLayout";
 
 const BurrowHistory = () => {
   return <UserLayout title="BurrowHistory"> lalkkakaka</UserLayout>;
