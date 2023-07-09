@@ -1,21 +1,30 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Footer } from "../../components/layout/Footer";
 import { Header } from "../../components/layout/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { addBurrowAction } from "../burrowHistory/burrowAction";
+
 export const BookLanding = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate;
   const { _id } = useParams();
 
   const { books } = useSelector((state) => state.bookInfo);
+  console.log(books);
   const { user } = useSelector((state) => state.userInfo);
+  console.log(user);
 
   const { thumbnail, title, author, year, summary, isAvailable, dueDate } =
     books.find((item) => item._id === _id) || {};
+
+  if (!title) {
+    navigate("/");
+  }
 
   const handleOnBurrow = () => {
     if (window.confirm("Are you sure you want to burrow this book?")) {
@@ -24,7 +33,7 @@ export const BookLanding = () => {
         bookName: title,
         thumbnail,
         userId: user._id,
-        userName: user.fName,
+        userName: user.fname,
       };
       dispatch(addBurrowAction(obj));
     }
@@ -54,12 +63,12 @@ export const BookLanding = () => {
                     </Button>
                   ) : (
                     <Button variant="dark" onClick={handleOnBurrow} disabled>
-                      Available from : {dueDate.slice(0, 10)}
+                      Available from : {dueDate?.slice(0, 10)}
                     </Button>
                   )}
                 </div>
               ) : (
-                <Link to="/login" className="nav-link">
+                <Link to="/signin" className="nav-link">
                   <div className="d-grid">
                     <Button variant="dark">Login to Burrow this book</Button>
                   </div>
@@ -85,7 +94,7 @@ export const BookLanding = () => {
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Cum voluptatum natus eum consequatur voluptas,{" "}
                     </p>
-                    <div>- Prem Acharya</div>
+                    <div> Kiran</div>
                   </div>
                 </div>
               </div>
@@ -97,5 +106,3 @@ export const BookLanding = () => {
     </div>
   );
 };
-
-export default BookLanding;

@@ -4,6 +4,20 @@ const rootAPI = "http://localhost:8003";
 const userAPI = rootAPI + "/api/v1/user";
 const bookAPI = rootAPI + "/api/v1/book";
 const burrowAPI = rootAPI + "/api/v1/burrow";
+
+const getUserIdFromLocalStorage = () => {
+  const str = localStorage.get("persist:userInfo");
+  if (str) {
+    const userInfo = JSON.parse(str);
+
+    if (userInfo.user) {
+      const user = JSON.parse(userInfo.user);
+      return user?._id;
+    }
+  } else {
+    return false;
+  }
+};
 /// for the user
 // ====== user
 export const postUser = async (userData) => {
@@ -73,7 +87,12 @@ export const updateBook = async (obj) => {
 
 export const deleteBook = async (_id) => {
   try {
-    const { data } = await axios.delete(bookAPI + "/" + _id);
+    const userId = getUserIdFromLocalStorage();
+    const { data } = await axios.delete(bookAPI + "/" + _id, {
+      headers: {
+        Authorization: userId,
+      },
+    });
 
     return data;
   } catch (error) {
@@ -89,6 +108,18 @@ export const postBurrow = async (obj) => {
   try {
     const { data } = await axios.post(burrowAPI, obj);
 
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const fetchBurrow = async () => {
+  try {
+    const { data } = await axios.get(burrowAPI);
     return data;
   } catch (error) {
     return {
