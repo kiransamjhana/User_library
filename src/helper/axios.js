@@ -6,7 +6,7 @@ const bookAPI = rootAPI + "/api/v1/book";
 const burrowAPI = rootAPI + "/api/v1/burrow";
 
 const getUserIdFromLocalStorage = () => {
-  const str = localStorage.get("persist:userInfo");
+  const str = localStorage.getItem("persist:userInfo");
   if (str) {
     const userInfo = JSON.parse(str);
 
@@ -14,9 +14,8 @@ const getUserIdFromLocalStorage = () => {
       const user = JSON.parse(userInfo.user);
       return user?._id;
     }
-  } else {
-    return false;
   }
+  return null;
 };
 /// for the user
 // ====== user
@@ -62,7 +61,7 @@ export const postBook = async (obj) => {
 export const fetchBooks = async () => {
   try {
     const { data } = await axios.get(bookAPI);
-
+    console.log(data);
     return data;
   } catch (error) {
     return {
@@ -119,7 +118,11 @@ export const postBurrow = async (obj) => {
 
 export const fetchBurrow = async () => {
   try {
-    const { data } = await axios.get(burrowAPI);
+    const { data } = await axios.get(burrowAPI, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
     return data;
   } catch (error) {
     return {

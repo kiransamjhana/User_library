@@ -7,8 +7,8 @@ import {
 } from "../../helper/axios";
 import { setBooks } from "./booksSlice";
 
-export const postBookAction = (bookObj) => async (dispatch) => {
-  const dataPending = postBook(bookObj);
+export const postBookAction = (Obj) => async (dispatch) => {
+  const dataPending = postBook(Obj);
 
   toast.promise(dataPending, {
     pending: "Please wait...",
@@ -23,8 +23,8 @@ export const postBookAction = (bookObj) => async (dispatch) => {
   }
 };
 
-export const updateBookAction = (bookObj) => async (dispatch) => {
-  const dataPending = updateBook(bookObj);
+export const updateBookAction = (Obj) => async (dispatch) => {
+  const dataPending = updateBook(Obj);
 
   toast.promise(dataPending, {
     pending: "Please wait...",

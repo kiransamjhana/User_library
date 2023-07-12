@@ -23,7 +23,6 @@ export const NewBookForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
 
     dispatch(postBookAction(form));
   };
@@ -74,7 +73,7 @@ export const NewBookForm = () => {
         <div className="py-3">
           <Form onSubmit={handleOnSubmit}>
             {inputs.map((item, i) => (
-              <CustomInput onChange={handleOnChange} key={i} {...item} />
+              <CustomInput key={i} {...item} onChange={handleOnChange} />
             ))}
 
             <div className="d-grid">
