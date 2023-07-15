@@ -19,7 +19,7 @@ export const BookTable = () => {
       </thead>
       <tbody>
         {books.map((item, i) => (
-          <tr key={item._id}>
+          <tr key={item?._id}>
             <td>{i + 1}</td>
             <td>
               <img src={item.thumbnail} width="150px" alt="" />
@@ -29,7 +29,7 @@ export const BookTable = () => {
             <td> {item.summary}</td>
             <td>{item.author}</td>
             <td>{item.year}</td>
-            <Link to={`/book/edit/${item._id}`}>
+            <Link to={`/book/edit/${item?._id}`}>
               <Button variant="warning">Edit</Button>
             </Link>
           </tr>

@@ -48,8 +48,12 @@ export const loginUser = async (userData) => {
 // ========= book
 export const postBook = async (obj) => {
   try {
-    const { data } = await axios.post(bookAPI, obj);
-
+    const { data } = await axios.post(bookAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
+    console.log(data);
     return data;
   } catch (error) {
     return {
@@ -60,7 +64,11 @@ export const postBook = async (obj) => {
 };
 export const fetchBooks = async () => {
   try {
-    const { data } = await axios.get(bookAPI);
+    const { data } = await axios.get(bookAPI, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
     console.log(data);
     return data;
   } catch (error) {
@@ -73,7 +81,11 @@ export const fetchBooks = async () => {
 
 export const updateBook = async (obj) => {
   try {
-    const { data } = await axios.put(bookAPI, obj);
+    const { data } = await axios.put(bookAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
 
     return data;
   } catch (error) {
@@ -105,7 +117,11 @@ export const deleteBook = async (_id) => {
 // ========= Burrow
 export const postBurrow = async (obj) => {
   try {
-    const { data } = await axios.post(burrowAPI, obj);
+    const { data } = await axios.post(burrowAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
 
     return data;
   } catch (error) {
@@ -123,6 +139,23 @@ export const fetchBurrow = async () => {
         Authorization: getUserIdFromLocalStorage(),
       },
     });
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const returnBurrow = async (obj) => {
+  try {
+    const { data } = await axios.put(burrowAPI, obj, {
+      headers: {
+        Authorization: getUserIdFromLocalStorage(),
+      },
+    });
+
     return data;
   } catch (error) {
     return {
