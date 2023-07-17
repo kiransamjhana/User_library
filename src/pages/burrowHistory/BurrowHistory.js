@@ -5,7 +5,7 @@ import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchBurrowAction, returnBurrowAction } from "./burrowAction";
-import { ReviewForm } from "../../components/review/ReviewForm";
+import { ReviewForm } from "../review/ReviewForm";
 import { setModalShow } from "../../system/systemSlice";
 import { CustomModel } from "../../components/modal/CustomModel";
 

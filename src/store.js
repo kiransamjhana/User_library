@@ -4,6 +4,7 @@ import userReducer from "./pages/signup-signin/userSlice";
 import bookReducer from "./pages/books/booksSlice";
 import burrowReducer from "./pages/burrowHistory/burrowSlice";
 import systemReducer from "./system/systemSlice";
+import reviewReducer from "./pages/review/reviewSlice";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
@@ -21,6 +22,7 @@ const store = configureStore({
     bookInfo: bookReducer,
     burrowInfo: burrowReducer,
     system: systemReducer,
+    reviewInfo: reviewReducer,
   },
 });
 
